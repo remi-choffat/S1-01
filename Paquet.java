@@ -24,6 +24,14 @@ class Paquet{
     this.cartes = p;
   }
 
+  /**
+   * constructeur de Paquet
+   * @param p un tableau de cartes
+   */
+  public Paquet (Carte[] p){
+    this.cartes = p;
+  }
+
 
   /**
    * getter nombre de cartes
