@@ -25,4 +25,30 @@ class Carte{
     return (this.valeur);
   }
 
+  /**
+   * toString
+   * @return un affichage de la carte
+   */
+  public String toStrint(){
+    return ("c"+this.valeur);
+  }
+
+  /**
+   * teste si la carte est plus grand qu'une autre
+   * @param carte la carte à comparer
+   * @return true si la carte est plus grande que la carte passée en paramètre, false sinon
+   */
+  public boolean etrePlusGrand(Carte carte){
+    return (this.valeur > carte.valeur);
+  }
+
+  /**
+   * teste si la carte a une différence de 10 avec une autre
+   * @param carte la carte à comparer
+   * @return true si la carte a exactement une différence de 10 avec la carte passée en paramètre, false sinon
+   */
+  public boolean avoirDiffDe10(Carte carte){
+    return (this.valeur == carte.valeur-10) || (this.valeur == carte.valeur+10);
+  }
+
 }
