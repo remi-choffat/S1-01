@@ -211,6 +211,28 @@ class Paquet{
     this.cartes=tmp.cartes;
   }
 
+
+  /**
+   * Permet d'ajouter une carte dans un paquet trie
+   * @param c la carte a ajouter
+   */
+  public void insererTri(Carte c){
+    if(this.cartes!=null){ //on verifie si le tableau n'est pas vide
+      this.ajouterCarteDebut(c);
+      }
+    else{
+      int i=0;
+      while(this.cartes[i].getValeur()<c.getValeur()){
+        i++;
+      }
+      this.ajouterCarte(c, i-1);
+      }
+    }
+    
+
+  }
+
+
   /**
    * Retire et renvoie la première carte du paquet
    * @return la première carte du paquet
@@ -218,6 +240,7 @@ class Paquet{
   public Carte prendreCarteDessus(){
     return this.retirerCarte(0);
   }
+
 
 
   /**
