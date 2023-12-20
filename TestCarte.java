@@ -27,4 +27,13 @@ public class TestCarte {
 		assertEquals("carte devrait avoir valeur 3", 3, carte.getValeur());
 	}
 
+  /**
+	 * test méthode toString
+	 */
+	@Test
+	public void test2_toString() {
+		Carte carte = new Carte(23);
+		assertEquals("carte devrait etre affichee c23", "c23", carte.toString());
+	}
+
 }
