@@ -1,6 +1,10 @@
 //Importation des package
 
+<<<<<<< Updated upstream
 import java.util.random.*;
+=======
+import java.util.Random;
+>>>>>>> Stashed changes
 
 /**
  * represente un paquet de cartes
@@ -190,11 +194,24 @@ class Paquet{
     }
   }
 
-
+  /**
+   * Pioche une carte au hasard dans un paquet
+   * @return la carte pioche 
+   */
   public Carte piocherHasard(){
-
+    Random r=new Random();
+    int indice=r.nextInt(this.cartes.length);
+    
+    return this.retirerCarte(indice);
   }
 
+  public void melangerPaquet(){
+    Paquet tmp= new Paquet();
+    for(int i=0;i<this.cartes.length;i++){
+      tmp.ajouterCarteDebut(this.piocherHasard());
+    }
+    this.cartes=tmp.cartes;
+  }
 
   /**
    * Retire et renvoie la première carte du paquet
