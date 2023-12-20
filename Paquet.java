@@ -1,10 +1,6 @@
-//Importation des package
+//Importation des packages
 
-<<<<<<< Updated upstream
-import java.util.random.*;
-=======
 import java.util.Random;
->>>>>>> Stashed changes
 
 /**
  * represente un paquet de cartes
@@ -185,8 +181,8 @@ class Paquet{
   }
 
   /**
-   * remplis un tableau de carte de valeur 2 a max-1
-   * @param max nombre de carte a ajouter au paquet
+   * remplit un tableau de cartes de valeur 2 a max-1
+   * @param max nombre de cartes a ajouter au paquet
    */
   public void remplir(int max){
     for(int i=2; i<max-1;i++){
@@ -196,12 +192,12 @@ class Paquet{
 
   /**
    * Pioche une carte au hasard dans un paquet
-   * @return la carte pioche 
+   * @return la carte piochee
    */
   public Carte piocherHasard(){
     Random r=new Random();
     int indice=r.nextInt(this.cartes.length);
-    
+
     return this.retirerCarte(indice);
   }
 
