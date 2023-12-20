@@ -141,6 +141,12 @@ class Paquet{
     return c;
   }
 
+  public void remplir(int max){
+    for(int i=2; i<max-1;i++){
+
+    }
+  }
+
 
   /**
    * affiche le contenu du paquet
@@ -156,4 +162,6 @@ class Paquet{
     return s;
   }
 
+
+  //* Bonjour */
 }
