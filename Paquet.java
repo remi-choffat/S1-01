@@ -1,6 +1,6 @@
 //Importation des package
 
-package java.util.Random
+import java.util.random.*;
 
 /**
  * represente un paquet de cartes
@@ -197,16 +197,23 @@ class Paquet{
 
 
   /**
-   * affiche le contenu du paquet
+   * Retire et renvoie la première carte du paquet
+   * @return la première carte du paquet
+   */
+  public Carte prendreCarteDessus(){
+    return this.retirerCarte(0);
+  }
+
+
+  /**
+   * affiche le contenu du paquet (la main du joueur)
    * @return un affichage du paquet de cartes
    */
   public String toString(){
     String s = "";
-    s += "--------------------------\n";
     for (int i=0; i<this.getNbCartes(); i++){
-      s += (""+i+". carte("+this.cartes[i].getValeur()+")\n");
+      s += (""+i+"-"+this.cartes[i]+" ");
     }
-    s += "--------------------------\n\n";
     return s;
   }
 
