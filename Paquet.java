@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * represente un paquet de cartes
  */
-class Paquet{
+public class Paquet{
 
   /**
    * le paquet de cartes
@@ -196,17 +196,21 @@ class Paquet{
    * Pioche une carte au hasard dans un paquet
    * @return la carte piochee
    */
-  public Carte piocherHasard(){
+  private Carte piocherHasard(){
     Random r=new Random();
     int indice=r.nextInt(this.cartes.length);
     return this.retirerCarte(indice);
   }
-  
 
+  /**
+   * Mélange l'ordre des cartes du paquet
+   */
   public void melangerPaquet(){
     Paquet tmp= new Paquet();
+    while (this.cartes == tmp.cartes){
     for(int i=0;i<this.cartes.length;i++){
       tmp.ajouterCarteDebut(this.piocherHasard());
+    }
     }
     this.cartes=tmp.cartes;
   }
@@ -228,9 +232,6 @@ class Paquet{
       this.ajouterCarte(c, i-1);
       }
     }
-    
-
-  }
 
 
   /**
@@ -240,7 +241,6 @@ class Paquet{
   public Carte prendreCarteDessus(){
     return this.retirerCarte(0);
   }
-
 
 
   /**

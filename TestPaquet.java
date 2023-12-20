@@ -390,4 +390,21 @@ public class TestPaquet {
 			}
 		}
 
+		/**
+		 * test mélanger
+		 */
+		@Test
+		public void test23_melangerPaquet() {
+			Paquet paquet1 = new Paquet();
+			paquet1.remplir(10);
+			Paquet paquet2 = new Paquet();
+			paquet2.remplir(10);
+			paquet2.melangerPaquet();
+			boolean egal = true;
+			for (int i=0; i<8; i++){
+				if (paquet1.getCarte(i) != paquet2.getCarte(i)) egal = false;
+			}
+			assertEquals("les deux paquets sont identiques", false, egal);
+		}
+
 }
