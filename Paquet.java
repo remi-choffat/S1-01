@@ -1,3 +1,7 @@
+//Importation des package
+
+package java.util.Random
+
 /**
  * represente un paquet de cartes
  */
@@ -176,10 +180,19 @@ class Paquet{
     return c;
   }
 
+  /**
+   * remplis un tableau de carte de valeur 2 a max-1
+   * @param max nombre de carte a ajouter au paquet
+   */
   public void remplir(int max){
     for(int i=2; i<max-1;i++){
-
+      this.cartes[i]=new Carte(i);
     }
+  }
+
+
+  public Carte piocherHasard(){
+
   }
 
 
@@ -198,5 +211,4 @@ class Paquet{
   }
 
 
-  //* Bonjour */
 }
