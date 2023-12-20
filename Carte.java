@@ -29,7 +29,7 @@ class Carte{
    * toString
    * @return un affichage de la carte
    */
-  public String toStrint(){
+  public String toString(){
     return ("c"+this.valeur);
   }
 
