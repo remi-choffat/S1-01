@@ -8,9 +8,10 @@ import java.util.Random;
 public class PaquetCartes{
 
   /**
-   * le paquet de cartes
+   * le paquet constitue des cartes
    */
   private Carte[] cartes;
+
 
   /**
    * constructeur vide de PaquetCartes
@@ -27,6 +28,7 @@ public class PaquetCartes{
   public PaquetCartes (Carte[] p){
     this.cartes = p;
   }
+
 
   /**
    * constructeur de PaquetCartes avec tableau d'entiers
@@ -52,8 +54,8 @@ public class PaquetCartes{
 
   /**
    * getter carte
-   * @param place la place de la carte a chercher
-   * @return la carte a la place place, null si la carte n'existe pas
+   * @param i la place de la carte a chercher
+   * @return la carte a la place i, null si la carte n'existe pas
    */
   public Carte getCarte(int i){
     if (i>=0 && i<this.getNbCartes()){
@@ -63,6 +65,7 @@ public class PaquetCartes{
       return null;
     }
   }
+
 
   /**
    * getter dernière carte
@@ -77,8 +80,9 @@ public class PaquetCartes{
     }
   }
 
+
   /**
-   * test si le paquet est vide
+   * teste si le paquet est vide
    * @return true si le paquet est vide (0 carte), false sinon
    */
   public boolean etreVide(){
@@ -153,8 +157,8 @@ public class PaquetCartes{
 
 
   /**
-   * retire une carte
-   * @param c la carte a retirer
+   * retire une carte du paquet
+   * @param indice la place de la carte a retirer
    * @return la carte retiree
    */
   public Carte retirerCarte(int indice){
@@ -180,6 +184,7 @@ public class PaquetCartes{
     return c;
   }
 
+
   /**
    * remplit un tableau de cartes de valeur 2 a max-1
    * @param max nombre de cartes a ajouter au paquet
@@ -192,6 +197,7 @@ public class PaquetCartes{
     this.cartes = c;
   }
 
+
   /**
    * Pioche une carte au hasard dans un paquet
    * @return la carte piochee
@@ -201,6 +207,7 @@ public class PaquetCartes{
     int indice=r.nextInt(this.cartes.length);
     return this.retirerCarte(indice);
   }
+
 
   /**
    * Mélange l'ordre des cartes du paquet
@@ -221,7 +228,7 @@ public class PaquetCartes{
    * @param c la carte a ajouter
    */
   public void insererTri(Carte c){
-    if(this.cartes!=null){ //on verifie si le tableau n'est pas vide
+    if(this.getNbCartes()==0){ //on verifie si le tableau est vide
       this.ajouterCarteDebut(c);
       }
     else{
@@ -250,7 +257,7 @@ public class PaquetCartes{
   public String toString(){
     String s = "";
     for (int i=0; i<this.getNbCartes(); i++){
-      s += (""+i+"-"+this.cartes[i]+" ");
+      s += (i+"-"+this.cartes[i]+" ");
     }
     return s;
   }

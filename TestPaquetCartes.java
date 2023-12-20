@@ -46,6 +46,7 @@ public class TestPaquetCartes {
 
 	}
 
+
 	/**
 	 * methode de lancement des tests
 	 * @param args
@@ -53,6 +54,7 @@ public class TestPaquetCartes {
 	public static void main(String[] args) {
 		lancer(new TestPaquetCartes(), args);
 	}
+
 
 	/**
 	 * test du constructeur vide
@@ -62,6 +64,7 @@ public class TestPaquetCartes {
 		PaquetCartes paquet = new PaquetCartes();
 		assertEquals("paquet devrait avoir 0 carte", 0, paquet.getNbCartes());
 	}
+
 
 	/**
 	 * test du constructeur parametres
@@ -76,6 +79,7 @@ public class TestPaquetCartes {
 		PaquetCartes paquet = new PaquetCartes(tab);
 		assertEquals("paquet devrait avoir 3 cartes", 3, paquet.getNbCartes());
 	}
+
 
 	/**
 	 * test du constructeur avec tableau d'entiers
@@ -104,10 +108,10 @@ public class TestPaquetCartes {
 
 		PaquetCartes paquet = new PaquetCartes(tab);
 		assertEquals("paquet devrait avoir 3 cartes", 3, paquet.getNbCartes());
-
-                Carte c = paquet.getCarte(1);
+		Carte c = paquet.getCarte(1);
 		assertEquals("la carte 1 a pour valeur 2", 2, c.getValeur());
 	}
+
 
 	/**
 	 * test getCarte paquet vide
@@ -119,6 +123,7 @@ public class TestPaquetCartes {
 		assertEquals("paquet devrait avoir 0 carte", 0, paquet.getNbCartes());
 		assertEquals("la carte 0 est null", null, paquet.getCarte(0));
 	}
+
 
 	/**
 	 * test getCarte hors tableau
@@ -137,6 +142,7 @@ public class TestPaquetCartes {
 		assertEquals("la carte 3 n'existe pas", null, c);
 	}
 
+
 	/**
 	 * test nbCartes
 	 */
@@ -150,6 +156,7 @@ public class TestPaquetCartes {
 		assertEquals("paquet devrait avoir 6 cartes", 6, paquet.getNbCartes());
 	}
 
+
 	/**
 	 * test nbCartes 0
 	 */
@@ -159,6 +166,7 @@ public class TestPaquetCartes {
 		PaquetCartes paquet = new PaquetCartes(tab);
 		assertEquals("paquet devrait avoir 0 carte", 0, paquet.getNbCartes());
 	}
+
 
 	/**
 	 * test getDerniereCarte
@@ -173,6 +181,7 @@ public class TestPaquetCartes {
 		assertEquals("valeur de la derniere carte devrait etre 5", 5, paquet.getDerniereCarte().getValeur());
 	}
 
+
 	/**
 	 * test getDerniereCarte vide
 	 */
@@ -183,6 +192,7 @@ public class TestPaquetCartes {
 		assertEquals("la derniere carte devrait etre null", null, paquet.getDerniereCarte());
 	}
 
+
 	/**
 	 * test etreVide vrai
 	 */
@@ -192,6 +202,7 @@ public class TestPaquetCartes {
 		PaquetCartes paquet = new PaquetCartes(tab);
 		assertEquals("paquet devrait être vide", true, paquet.etreVide());
 	}
+
 
 	/**
 	 * test etreVide vrai
@@ -204,6 +215,7 @@ public class TestPaquetCartes {
 		PaquetCartes paquet = new PaquetCartes(tab);
 		assertEquals("paquet ne devrait pas être vide", false, paquet.etreVide());
 	}
+
 
 	/**
 	 * test ajoutCarteDebut ok
@@ -220,13 +232,14 @@ public class TestPaquetCartes {
 
 		assertEquals("paquet devrait avoir 4 cartes", 4, paquet.getNbCartes());
 
-								// chaque carte doit etre bien placee: place i => valeur i+1
-								for (int i=0;i<3;i++) {
-			Carte c = paquet.getCarte(i);
-			assertEquals("la carte "+i+" a pour valeur "+i, i, c.getValeur());
+			// chaque carte doit etre bien placee: place i => valeur i+1
+			for (int i=0;i<3;i++) {
+				Carte c = paquet.getCarte(i);
+				assertEquals("la carte "+i+" a pour valeur "+i, i, c.getValeur());
 		}
 
 	}
+
 
 	/**
 	 * test ajoutCarteFin ok
@@ -249,6 +262,7 @@ public class TestPaquetCartes {
 			assertEquals("la carte "+i+"a pour valeur"+(i+1), i+1, c.getValeur());
 		}
 	}
+
 
 	/**
 	 * test ajoutCarte ok
@@ -273,6 +287,7 @@ public class TestPaquetCartes {
 
 	}
 
+
 		/**
 		 * test ajoutCarte place hors tableau inf
 		 */
@@ -295,6 +310,7 @@ public class TestPaquetCartes {
 			}
 
 		}
+
 
 		/**
 		 * test ajoutCarte place hors tableau sup
@@ -319,6 +335,7 @@ public class TestPaquetCartes {
 
 		}
 
+
 		/**
 		 * test retirerCarte ok
 		 */
@@ -341,6 +358,7 @@ public class TestPaquetCartes {
 			assertEquals("carte retiree a pour valeur 2", 2, c.getValeur());
 
 		}
+
 
 		/**
 		 * test retirerCarte premiere carte
@@ -365,6 +383,7 @@ public class TestPaquetCartes {
 
 		}
 
+
 		/**
 		 * test retirerCarte derniere carte
 		 */
@@ -388,6 +407,7 @@ public class TestPaquetCartes {
 
 		}
 
+
 		/**
 		 * test retirerCarte carte inexistante
 		 */
@@ -409,6 +429,7 @@ public class TestPaquetCartes {
 
 		}
 
+
 		/**
 		 * test remplir
 		 */
@@ -426,6 +447,7 @@ public class TestPaquetCartes {
 			}
 		}
 
+
 		/**
 		 * test mélanger
 		 */
@@ -441,6 +463,80 @@ public class TestPaquetCartes {
 				if (paquet1.getCarte(i) != paquet2.getCarte(i)) egal = false;
 			}
 			assertEquals("les deux paquets sont identiques", false, egal);
+		}
+
+
+		/**
+		 * test insererTri tableau vide
+		 */
+		@Test
+		public void test24_insererTri_vide() {
+			PaquetCartes tab = new PaquetCartes();
+			tab.insererTri(new Carte(2));
+			assertEquals("le paquet devrait avoir 1 cartes", 1, tab.getNbCartes());
+			assertEquals("la carte 0 a pour valeur 2", 2, tab.getCarte(0).getValeur());
+		}
+
+
+		/**
+		 * test insererTri tableau non vide
+		 */
+		@Test
+		public void test25_insererTri() {
+			Carte[] tab = new Carte[3];
+			tab[0] = new Carte(0);
+			tab[1] = new Carte(1);
+			tab[2] = new Carte(3);
+			PaquetCartes paquet = new PaquetCartes(tab);
+			paquet.insererTri(new Carte(2));
+			assertEquals("le paquet devrait avoir 4 cartes", 4, paquet.getNbCartes());
+			for (int i=0; i<3; i++){
+				Carte c = paquet.getCarte(i);
+				assertEquals("la carte "+i+" a pour valeur "+i, i, c.getValeur());
+			}
+		}
+
+
+		/**
+		 * test prendreCarteDessus tableau non vide
+		 */
+		@Test
+		public void test26_prendreCarteDessus() {
+			Carte[] tab = new Carte[3];
+			tab[0] = new Carte(0);
+			tab[1] = new Carte(1);
+			tab[2] = new Carte(2);
+			PaquetCartes paquet = new PaquetCartes(tab);
+			Carte c = paquet.prendreCarteDessus();
+			assertEquals("le paquet devrait avoir 2 cartes", 2, paquet.getNbCartes());
+			assertEquals("la carte retiree a pour valeur 0", 0, c.getValeur());
+		}
+
+
+		/**
+		 * test prendreCarteDessus tableau vide
+		 */
+		@Test
+		public void test27_prendreCarteDessus_vide() {
+			PaquetCartes paquet = new PaquetCartes();
+			Carte c = paquet.prendreCarteDessus();
+			assertEquals("le paquet devrait avoir 0 carte", 0, paquet.getNbCartes());
+			assertEquals("la methode doit renvoyer null", null, c);
+		}
+
+
+		/**
+		 * test toString
+		 */
+		@Test
+		public void test28_toString() {
+			Carte[] tab = new Carte[4];
+			tab[0] = new Carte(2);
+			tab[1] = new Carte(8);
+			tab[2] = new Carte(24);
+			tab[3] = new Carte(36);
+			PaquetCartes paquet = new PaquetCartes(tab);
+			assertEquals("l'affichage est incorrect", "0-c2 1-c8 2-c24 3-c36 ", paquet.toString());
 		}
 
 }
