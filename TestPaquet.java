@@ -373,4 +373,21 @@ public class TestPaquet {
 
 		}
 
+		/**
+		 * test remplir
+		 */
+		@Test
+		public void test22_remplir() {
+			Paquet paquet = new Paquet();
+			paquet.remplir(5);
+
+			// test paquet
+			assertEquals("paquet devrait avoir 3 cartes", 3, paquet.getNbCartes());
+
+			// test cartes
+			for (int i=0; i<3; i++){
+				assertEquals("carte "+i+" devrait etre egale a "+(i+2), i+2, paquet.getCarte(i).getValeur());
+			}
+		}
+
 }

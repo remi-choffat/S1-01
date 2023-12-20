@@ -185,9 +185,11 @@ class Paquet{
    * @param max nombre de cartes a ajouter au paquet
    */
   public void remplir(int max){
-    for(int i=2; i<max-1;i++){
-      this.cartes[i]=new Carte(i);
+    Carte[] c = new Carte[max-2];
+    for(int i=2; i<max;i++){
+      c[i-2]=new Carte(i);
     }
+    this.cartes = c;
   }
 
   /**
@@ -197,9 +199,9 @@ class Paquet{
   public Carte piocherHasard(){
     Random r=new Random();
     int indice=r.nextInt(this.cartes.length);
-
     return this.retirerCarte(indice);
   }
+  
 
   public void melangerPaquet(){
     Paquet tmp= new Paquet();
@@ -229,6 +231,5 @@ class Paquet{
     }
     return s;
   }
-
 
 }
