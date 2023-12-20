@@ -41,12 +41,26 @@ public class TestPaquet {
 		assertEquals("paquet devrait avoir 3 cartes", 3, paquet.getNbCartes());
 	}
 
+	/**
+	 * test du constructeur avec tableau d'entiers
+	 */
+	@Test
+	public void test3_constructeurParam_Entiers() {
+		int[] tab = new int[4];
+		for (int i=0; i<4; i++){
+			tab[i] = i;
+		}
+
+		Paquet paquet = new Paquet(tab);
+		assertEquals("paquet devrait avoir 4 cartes", 4, paquet.getNbCartes());
+	}
+
 
   /**
 	 * test getCarte
 	 */
 	@Test
-	public void test3_getCarte_ok() {
+	public void test4_getCarte_ok() {
 		Carte[] tab = new Carte[3];
 		tab[0] = new Carte(1);
 		tab[1] = new Carte(2);
@@ -60,10 +74,21 @@ public class TestPaquet {
 	}
 
 	/**
+	 * test getCarte paquet vide
+	 */
+	@Test
+	public void test5_getCarte_vide() {
+		Carte[] tab = new Carte[0];
+		Paquet paquet = new Paquet(tab);
+		assertEquals("paquet devrait avoir 0 carte", 0, paquet.getNbCartes());
+		assertEquals("la carte 0 est null", null, paquet.getCarte(0));
+	}
+
+	/**
 	 * test getCarte hors tableau
 	 */
 	@Test
-	public void test4_getCarte_horsTableau() {
+	public void test6_getCarte_horsTableau() {
 		Carte[] tab = new Carte[3];
 		tab[0] = new Carte(1);
 		tab[1] = new Carte(2);
@@ -77,10 +102,78 @@ public class TestPaquet {
 	}
 
 	/**
+	 * test nbCartes
+	 */
+	@Test
+	public void test7_getNbCartes() {
+		int[] tab = new int[6];
+		for (int i=0; i<6; i++){
+			tab[i] = i;
+		}
+		Paquet paquet = new Paquet(tab);
+		assertEquals("paquet devrait avoir 6 cartes", 6, paquet.getNbCartes());
+	}
+
+	/**
+	 * test nbCartes 0
+	 */
+	@Test
+	public void test8_getNbCartes_0() {
+		int[] tab = new int[0];
+		Paquet paquet = new Paquet(tab);
+		assertEquals("paquet devrait avoir 0 carte", 0, paquet.getNbCartes());
+	}
+
+	/**
+	 * test getDerniereCarte
+	 */
+	@Test
+	public void test9_getDerniereCarte() {
+		int[] tab = new int[6];
+		for (int i=0; i<6; i++){
+			tab[i] = i;
+		}
+		Paquet paquet = new Paquet(tab);
+		assertEquals("valeur de la derniere carte devrait etre 5", 5, paquet.getDerniereCarte().getValeur());
+	}
+
+	/**
+	 * test getDerniereCarte vide
+	 */
+	@Test
+	public void test10_getDerniereCarte_Vide() {
+		Carte[] tab = new Carte[0];
+		Paquet paquet = new Paquet(tab);
+		assertEquals("la derniere carte devrait etre null", null, paquet.getDerniereCarte());
+	}
+
+	/**
+	 * test estVide vrai
+	 */
+	@Test
+	public void test11_estVide_Vrai() {
+		int[] tab = new int[0];
+		Paquet paquet = new Paquet(tab);
+		assertEquals("paquet devrait être vide", true, paquet.estVide());
+	}
+
+	/**
+	 * test estVide vrai
+	 */
+	@Test
+	public void test12_estVide_Faux() {
+		int[] tab = new int[2];
+		tab[0] = 1;
+		tab[1]  =2;
+		Paquet paquet = new Paquet(tab);
+		assertEquals("paquet ne devrait pas être vide", false, paquet.estVide());
+	}
+
+	/**
 	 * test ajoutCarteDebut ok
 	 */
 	@Test
-	public void test5_ajoutCarteDebut() {
+	public void test13_ajoutCarteDebut() {
 		Carte[] tab = new Carte[3];
 		tab[0] = new Carte(1);
 		tab[1] = new Carte(2);
@@ -103,7 +196,7 @@ public class TestPaquet {
 	 * test ajoutCarteFin ok
 	 */
 	@Test
-	public void test6_ajoutCarteFin() {
+	public void test14_ajoutCarteFin() {
 		Carte[] tab = new Carte[3];
 		tab[0] = new Carte(1);
 		tab[1] = new Carte(2);
@@ -125,7 +218,7 @@ public class TestPaquet {
 	 * test ajoutCarte ok
 	 */
 	@Test
-	public void test7_ajoutCarte() {
+	public void test15_ajoutCarte() {
 		Carte[] tab = new Carte[3];
 		tab[0] = new Carte(1);
 		tab[1] = new Carte(3);
@@ -148,7 +241,7 @@ public class TestPaquet {
 		 * test ajoutCarte place hors tableau inf
 		 */
 		@Test
-		public void test8_ajoutCarte_hors_tableau_inf() {
+		public void test16_ajoutCarte_hors_tableau_inf() {
 			Carte[] tab = new Carte[3];
 			tab[0] = new Carte(2);
 			tab[1] = new Carte(3);
@@ -171,7 +264,7 @@ public class TestPaquet {
 		 * test ajoutCarte place hors tableau sup
 		 */
 		@Test
-		public void test9_ajoutCarte_hors_tableau_sup() {
+		public void test17_ajoutCarte_hors_tableau_sup() {
 			Carte[] tab = new Carte[3];
 			tab[0] = new Carte(1);
 			tab[1] = new Carte(2);
@@ -194,7 +287,7 @@ public class TestPaquet {
 		 * test retirerCarte ok
 		 */
 		@Test
-		public void test10_retirerCarte() {
+		public void test18_retirerCarte() {
 			Carte[] tab = new Carte[3];
 			tab[0] = new Carte(1);
 			tab[1] = new Carte(2);
@@ -217,7 +310,7 @@ public class TestPaquet {
 		 * test retirerCarte premiere carte
 		 */
 		@Test
-		public void test11_retirerCarte_premiere() {
+		public void test19_retirerCarte_premiere() {
 			Carte[] tab = new Carte[3];
 			tab[0] = new Carte(1);
 			tab[1] = new Carte(2);
@@ -240,7 +333,7 @@ public class TestPaquet {
 		 * test retirerCarte derniere carte
 		 */
 		@Test
-		public void test12_retirerCarte_derniere() {
+		public void test20_retirerCarte_derniere() {
 			Carte[] tab = new Carte[3];
 			tab[0] = new Carte(1);
 			tab[1] = new Carte(2);
@@ -263,7 +356,7 @@ public class TestPaquet {
 		 * test retirerCarte carte inexistante
 		 */
 		@Test
-		public void test13_retirerCarte_inexistante() {
+		public void test21_retirerCarte_inexistante() {
 			Carte[] tab = new Carte[3];
 			tab[0] = new Carte(1);
 			tab[1] = new Carte(2);
