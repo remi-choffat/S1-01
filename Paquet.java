@@ -51,11 +51,34 @@ class Paquet{
    * @param place la place de la carte a chercher
    * @return la carte a la place place, null si la carte n'existe pas
    */
-  public Carte getCarte(int place){
-    if (place>=0 && place<this.getNbCartes()){
-      return this.cartes[place];
+  public Carte getCarte(int i){
+    if (i>=0 && i<this.getNbCartes()){
+      return this.cartes[i];
     }
-    else {return null;}
+    else {
+      return null;
+    }
+  }
+
+  /**
+   * getter dernière carte
+   * @return la carte a la derniere place du paquet, null si le paquet est vide
+   */
+  public Carte getDerniereCarte(){
+    if (this.cartes.length != 0){
+      return this.cartes[this.cartes.length-1];
+    }
+    else {
+      return null;
+    }
+  }
+
+  /**
+   * test si le paquet est vide
+   * @return true si le paquet est vide (0 carte), false sinon
+   */
+  public boolean estVide(){
+    return (this.cartes.length==0);
   }
 
 
