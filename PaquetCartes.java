@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * represente un paquet de cartes
  */
-public class Paquet{
+public class PaquetCartes{
 
   /**
    * le paquet de cartes
@@ -13,26 +13,26 @@ public class Paquet{
   private Carte[] cartes;
 
   /**
-   * constructeur vide de Paquet
+   * constructeur vide de PaquetCartes
    */
-  public Paquet (){
+  public PaquetCartes (){
     this.cartes = new Carte[0];
   }
 
 
   /**
-   * constructeur de Paquet
+   * constructeur de PaquetCartes
    * @param p un tableau de cartes
    */
-  public Paquet (Carte[] p){
+  public PaquetCartes (Carte[] p){
     this.cartes = p;
   }
 
   /**
-   * constructeur de Paquet avec tableau d'entiers
+   * constructeur de PaquetCartes avec tableau d'entiers
    * @param e un tableau d'entiers
    */
-  public Paquet (int[] e){
+  public PaquetCartes (int[] e){
     Carte[] p = new Carte[e.length];
     for (int i=0; i<p.length; i++){
       p[i] = new Carte(e[i]);
@@ -81,7 +81,7 @@ public class Paquet{
    * test si le paquet est vide
    * @return true si le paquet est vide (0 carte), false sinon
    */
-  public boolean estVide(){
+  public boolean etreVide(){
     return (this.cartes.length==0);
   }
 
@@ -206,7 +206,7 @@ public class Paquet{
    * Mélange l'ordre des cartes du paquet
    */
   public void melangerPaquet(){
-    Paquet tmp= new Paquet();
+    PaquetCartes tmp= new PaquetCartes();
     while (this.cartes == tmp.cartes){
     for(int i=0;i<this.cartes.length;i++){
       tmp.ajouterCarteDebut(this.piocherHasard());
