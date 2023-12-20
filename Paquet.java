@@ -156,6 +156,4 @@ class Paquet{
     return s;
   }
 
-
-  //* Bonjour */
 }
