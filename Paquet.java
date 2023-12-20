@@ -118,20 +118,20 @@ class Paquet{
    * @param c la carte a retirer
    * @return la carte retiree
    */
-  public Carte retirerCarte(int p){
+  public Carte retirerCarte(int indice){
     //memorise la carte a retirer
-    Carte c = this.getCarte(p);
+    Carte c = this.getCarte(indice);
     //teste si la carte est bien presente dans le paquet
     if (c!=null){
       int n = this.getNbCartes();
       //cree un nouveau tableau de taille inferieure
       Carte[] cartes = new Carte[n-1];
       //recopie les objets cartes de l’attribut cartes places avant p
-      for (int i=0; i<p; i++){
+      for (int i=0; i<indice; i++){
         cartes[i] = this.cartes[i];
       }
       //recopie les objets cartes de l’attribut cartes places apres p
-      for (int i=p+1; i<n; i++){
+      for (int i=indice+1; i<n; i++){
         cartes[i-1] = this.cartes[i];
       }
       //modifie les references pour que l’attribut cartes soit egal a ce nouveau tableau.
