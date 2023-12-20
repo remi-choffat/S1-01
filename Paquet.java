@@ -25,10 +25,14 @@ class Paquet{
   }
 
   /**
-   * constructeur de Paquet
-   * @param p un tableau de cartes
+   * constructeur de Paquet avec tableau d'entiers
+   * @param e un tableau d'entiers
    */
-  public Paquet (Carte[] p){
+  public Paquet (int[] e){
+    Carte[] p = new Carte[e.length];
+    for (int i=0; i<p.length; i++){
+      p[i] = new Carte(e[i]);
+    }
     this.cartes = p;
   }
 
