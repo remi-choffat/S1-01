@@ -19,11 +19,16 @@ public class PileCartes{
    * @param pCroissant true si la pile est croissante, false sinon
    */
   public PileCartes(boolean pCroissant, int max){
+    // On crée un nouveau paquet
     PaquetCartes paquet = new PaquetCartes();
-    int valeur = 0;
-    if (pCroissant) valeur = max;
+    int valeur = 1;
+    // Par défaut, si max = 0, on mettra max à 100
+    if (max == 0) max = 100;
+    if (!pCroissant) valeur = max;
+    // On crée la première carte de la pile
     Carte c = new Carte(valeur);
     paquet.ajouterCarteDebut(c);
+    // Affectation des valeurs aux attributs de PileCartes
     this.croissant = pCroissant;
     this.paquet = paquet;
   }
@@ -35,6 +40,15 @@ public class PileCartes{
   */
   public Carte getDerniereCarte(){
     return this.paquet.getDerniereCarte();
+  }
+
+
+  /**
+  * Getter croissant / décroissant
+  * @return true si la pile est croissante, false sinon
+  */
+  public boolean getSens(){
+    return this.croissant;
   }
 
 
