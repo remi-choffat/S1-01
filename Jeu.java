@@ -92,7 +92,7 @@ public class Jeu {
     }
 
 
-      /**
+    /**
      * Méthode qui permet de savoir si la carte à l'indice indice a été jouée sur la pile numPil
      * @param indice indice de la carte a jouer
      * @param numPil numero de la pile sur laquelle la carte va etre jouée
@@ -126,12 +126,17 @@ public class Jeu {
         return b;
     }
 
+
+    /**
+     * Méthode qui indique si la partie est finie et, si oui, si le joueur a gagné ou non
+     * @return 0 si la partie est en cours, 1 si le joueur a gagné, -1 si le joueur a perdu
+     */
     public int etreFini(){
         int test=0;
         // Test s'il reste des cartes dans la main et dans la pioche. Si non : le joueur a gagné
         if(this.main.getNbCartes()==0 && this.pioche.getNbCartes()==0)
             test=1;
-        boolean jeuPossible=false;  
+        boolean jeuPossible=false;
         int i = 0;
         // On teste s'il est possible de jouer une des cartes sur une des piles
         while (!jeuPossible && i<this.main.getNbCartes()){
@@ -142,18 +147,40 @@ public class Jeu {
         return test;
         }
 
-    
 
+    /**
+     * Méthode qui complète la main du joueur à 8 cartes
+     */
+    public void completerMain(){
+      while (this.main.getNbCartes()<8 && this.pioche.getNbCartes()>0){
+        this.main.insererTri(this.pioche.prendreCarteDessus());
+      }
+    }
+
+
+    /**
+     * Affiche l'état du jeu à l'instant courant
+     * @return un affichage de l'état du jeu
+     */
     public String toString(){
         return "################################################"+
-                "- PILE 1 : "+this.pile0+"\n"+
-                "- PILE 2 : "+this.pile1+"\n"+
-                "- PILE 3 : "+this.pile2+"\n"+
-                "- PILE 4 : "+this.pile3+"\n"+
+                "- PILE 0 : "+this.pile0+"\n"+
+                "- PILE 1 : "+this.pile1+"\n"+
+                "- PILE 2 : "+this.pile2+"\n"+
+                "- PILE 3 : "+this.pile3+"\n"+
                 "################################################\n"+
-                "Reste"+this.pioche.getNbCartes()+"cartes dans la pioche\n"+
+                "Reste "+this.pioche.getNbCartes()+" cartes dans la pioche\n"+
                 "################################################\n"+
-                "Main du joueur: \n"+this.main;
+                "Main du joueur: \n"+this.main+
+                "################################################\n\n";
+    }
+
+
+    /**
+     * Méthode qui gère toute la logique du jeu
+     */
+    public void lancerJeu(){
+    ;
     }
 
 }
