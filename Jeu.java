@@ -22,7 +22,6 @@ public class Jeu {
     private PileCartes pile3;
 
 
-
     public Jeu(int max){
         this.pile0=new PileCartes(true, max);
         this.pile1=new PileCartes(true, max);
