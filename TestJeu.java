@@ -50,8 +50,9 @@ public class TestJeu {
     @Test
     public void test1_constructeur_entier() {
       Jeu jeu = new Jeu(15);
-      assertEquals("le joueur doit avoir 8 cartes", 8, jeu.main.getNbCartes());
-      assertEquals("la pioche doit contenir 5 carets", 15-2-8, jeu.pioche.getNbCartes());
+      assertEquals("le joueur doit avoir 8 cartes", 8, jeu.getMain().getNbCartes());
+      assertEquals("la pioche doit contenir 5 carets", 15-2-8, jeu.getPioche().getNbCartes());
     }
+
 
 }
