@@ -1,5 +1,5 @@
 /**
- * represente une carte tres simple juste avec une valeur
+ * Represente une carte tres simple juste avec une valeur
  */
 class Carte{
 
