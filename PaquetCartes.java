@@ -214,9 +214,9 @@ public class PaquetCartes{
    */
   public void melangerPaquet(){
     PaquetCartes tmp= new PaquetCartes();
-    while (this.cartes == tmp.cartes){
+    while (this.cartes == tmp.cartes){ //verifie que le paquet melange n'est pas le meme
     for(int i=0;i<this.cartes.length;i++){
-      tmp.ajouterCarteDebut(this.piocherHasard());
+      tmp.ajouterCarteDebut(this.piocherHasard()); //On ajoute au paquet temporaire une carte pioche au hasard
     }
     }
     this.cartes=tmp.cartes;
@@ -233,7 +233,7 @@ public class PaquetCartes{
       }
     else{
       int i=0;
-      while(this.cartes[i].getValeur()<c.getValeur()){
+      while(this.cartes[i].getValeur()<c.getValeur()){ //On avance tant que la carte a inserer est inferieur a la valeur i du paquet
         i++;
       }
       this.ajouterCarte(c, i-1);
