@@ -3,7 +3,7 @@
 import java.util.Random;
 
 /**
- * represente un paquet de cartes
+ * Represente un paquet de cartes
  */
 public class PaquetCartes{
 
@@ -216,7 +216,7 @@ public class PaquetCartes{
     PaquetCartes tmp= new PaquetCartes();
     while (this.cartes == tmp.cartes){ //verifie que le paquet melange n'est pas le meme
     for(int i=0;i<this.cartes.length;i++){
-      tmp.ajouterCarteDebut(this.piocherHasard()); //On ajoute au paquet temporaire une carte pioche au hasard
+      tmp.ajouterCarteDebut(this.piocherHasard()); //On ajoute au paquet temporaire une carte piochee au hasard
     }
     }
     this.cartes=tmp.cartes;
@@ -233,7 +233,8 @@ public class PaquetCartes{
       }
     else{
       int i=0;
-      while(this.cartes[i].getValeur()<c.getValeur()){ //On avance tant que la carte a inserer est inferieur a la valeur i du paquet
+      //On avance tant que la valeur de la carte a inserer est inferieure a la valeur de la carte i du paquet
+      while(this.cartes[i].getValeur()<c.getValeur()){
         i++;
       }
       this.ajouterCarte(c, i-1);
