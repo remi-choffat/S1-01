@@ -138,14 +138,17 @@ public class Jeu {
         // Test s'il reste des cartes dans la main et dans la pioche. Si non : le joueur a gagné
         if(this.main.getNbCartes()==0 && this.pioche.getNbCartes()==0)
             test=1;
-        boolean jeuPossible=false;
-        int i = 0;
-        // On teste s'il est possible de jouer une des cartes sur une des piles
-        while (!jeuPossible && i<this.main.getNbCartes()){
-            jeuPossible=(this.pile0.etrePosable(this.main.getCarte(i)) || this.pile1.etrePosable(this.main.getCarte(i)) || this.pile2.etrePosable(this.main.getCarte(i)) || this.pile3.etrePosable(this.main.getCarte(i)));
+        else {
+          boolean jeuPossible = false;
+          int i = 0;
+          // On teste s'il est possible de jouer une des cartes sur une des piles
+          while (!jeuPossible && i<this.main.getNbCartes()){
+              jeuPossible=(this.pile0.etrePosable(this.main.getCarte(i)) || this.pile1.etrePosable(this.main.getCarte(i)) || this.pile2.etrePosable(this.main.getCarte(i)) || this.pile3.etrePosable(this.main.getCarte(i)));
+              i++;
+          }
+          // S'il n'est possible de jouer aucune carte, le joueur a perdu
+          if(!jeuPossible) test = -1;
         }
-        // S'il n'est possible de jouer aucune carte, le joueur a perdu
-        if(!jeuPossible) test = -1;
         return test;
         }
 
@@ -196,8 +199,8 @@ public class Jeu {
         if (tour%2 != 0) this.completerMain();
         System.out.println(this);
       }
-      if (this.etreFini() == 1) System.out.println("Gagné");
-      else System.out.println("Perdu");
+      if (this.etreFini() == 1) System.out.println("Gagné !\n");
+      else System.out.println("Vous avez perdu ; il n'y a plus aucun mouvement possible...\n");
     }
 
 }

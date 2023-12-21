@@ -237,7 +237,7 @@ public class PaquetCartes{
       while(i<this.cartes.length-1 && this.cartes[i].getValeur()<c.getValeur()){
         i++;
       }
-      this.ajouterCarte(c, i-1);
+      this.ajouterCarte(c, i);
       }
     }
 
