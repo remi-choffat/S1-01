@@ -1,6 +1,10 @@
 import static libtest.Lanceur.lancer;
 import static libtest.OutilTest.*;
+import libtest.*;
 
+/**
+ * classe de test qui permet de verifier que la classe Jeu fonctionne correctement
+ */
 public class TestJeu {
 
     /**
@@ -30,6 +34,7 @@ public class TestJeu {
         int fin = jeu.etreFini();
     }
 
+
     /**
      * lancement des tests
      */
@@ -37,4 +42,16 @@ public class TestJeu {
     {
         lancer(new TestJeu(),args);
     }
+
+
+    /**
+     * test du constructeur entier
+     */
+    @Test
+    public void test1_constructeur_entier() {
+      Jeu jeu = new Jeu(15);
+      assertEquals("le joueur doit avoir 8 cartes", 8, jeu.main.getNbCartes());
+      assertEquals("la pioche doit contenir 5 carets", 15-2-8, jeu.pioche.getNbCartes());
+    }
+
 }

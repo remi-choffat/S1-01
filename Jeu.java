@@ -22,6 +22,10 @@ public class Jeu {
     private PileCartes pile3;
 
 
+    /**
+     * Constructeur de jeu
+     * @param max la taille du jeu
+     */
     public Jeu(int max){
         this.pile0=new PileCartes(true, max);
         this.pile1=new PileCartes(true, max);
@@ -37,6 +41,10 @@ public class Jeu {
     }
 
 
+    /**
+     * Constructeur de jeu avec paquet
+     * @param p le paquet avec lequel initialiser le jeu
+     */
     public Jeu(PaquetCartes p){
         int n=p.getNbCartes();
         this.pile0=new PileCartes(true, n);
@@ -48,6 +56,38 @@ public class Jeu {
         for(int i=0;i<8;i++){
         this.main.insererTri(this.pioche.prendreCarteDessus());
       }
+    }
+
+
+    /**
+     * Getter main
+     * @return le paquet représentant la main du joueur
+     */
+    public PaquetCartes getMain(){
+      return this.main;
+    }
+
+
+    /**
+     * Getter pioche
+     * @return le paquet représentant la pioche
+     */
+    public PaquetCartes getPioche(){
+      return this.pioche;
+    }
+
+
+    /**
+     * Getter piles
+     * @return le paquet représentant la main du joueur
+     */
+    public PileCartes[] getPiles(){
+      PileCartes[] p = new PileCartes[4];
+      p[0] = this.pile0;
+      p[1] = this.pile1;
+      p[2] = this.pile2;
+      p[3] = this.pile3;
+      return p;
     }
 
 
