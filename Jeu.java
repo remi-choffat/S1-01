@@ -60,7 +60,8 @@ public class Jeu {
 
 
 
-    /* Getter main
+    /**
+    * Getter main
     * @return le paquet représentant la main du joueur
     */
     public PaquetCartes getMain(){
@@ -92,10 +93,10 @@ public class Jeu {
 
 
       /**
-     * Méthode qui permet de savoir si la carte à l'indice indice a était jouée sur la pile numPil
-     * @param indice indice de la carte a joué
+     * Méthode qui permet de savoir si la carte à l'indice indice a été jouée sur la pile numPil
+     * @param indice indice de la carte a jouer
      * @param numPil numero de la pile sur laquelle la carte va etre jouée
-     * @return true si la carte a était joué et false si la carte n'a pas était joué.
+     * @return true si la carte a été jouée, et false si la carte n'a pas été jouée.
      */
     public boolean jouerCarte(int indice, int numPil){
         if(numPil<1 || numPil>4) return false;
@@ -103,8 +104,8 @@ public class Jeu {
         switch (numPil) {
 
             case 0:
-            b = this.pile0.poserCarte(this.main.getCarte(indice)); //b est egale a true la carte peut etre posée et false si la carte ne peut pas etre posée
-            if(b) this.main.retirerCarte(indice); //si b=true, in retire la carte de la main du joueur
+            b = this.pile0.poserCarte(this.main.getCarte(indice)); //b est vrai si la carte peut etre posée, b est faux si la carte ne peut pas etre posée
+            if(b) this.main.retirerCarte(indice); //si b est vrai, on retire la carte de la main du joueur
             break;
 
             case 1:
@@ -127,13 +128,21 @@ public class Jeu {
 
     public int etreFini(){
         int test=0;
+        // Test s'il reste des cartes dans la main et dans la pioche. Si non : le joueur a gagné
         if(this.main.getNbCartes()==0 && this.pioche.getNbCartes()==0)
             test=1;
-        for(int i=0;i<this.main.getNbCartes();i++){
-            
+        boolean jeuPossible=false;  
+        int i = 0;
+        // On teste s'il est possible de jouer une des cartes sur une des piles
+        while (!jeuPossible && i<this.main.getNbCartes()){
+            jeuPossible=(this.pile0.etrePosable(this.main.getCarte(i)) || this.pile1.etrePosable(this.main.getCarte(i)) || this.pile2.etrePosable(this.main.getCarte(i)) || this.pile3.etrePosable(this.main.getCarte(i)));
+        }
+        // S'il n'est possible de jouer aucune carte, le joueur a perdu
+        if(!jeuPossible) test = -1;
+        return test;
         }
 
-    }
+    
 
     public String toString(){
         return "################################################"+
