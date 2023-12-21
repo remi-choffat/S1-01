@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Represente un jeu complet
  */
@@ -36,8 +38,8 @@ public class Jeu {
         this.pioche.melangerPaquet();
         this.main=new PaquetCartes();
         for(int i=0;i<8;i++){
-        this.main.insererTri(this.pioche.prendreCarteDessus());
-      }
+          this.main.insererTri(this.pioche.prendreCarteDessus());
+        }
     }
 
 
@@ -54,8 +56,8 @@ public class Jeu {
         this.pioche=p;
         this.main=new PaquetCartes();
         for(int i=0;i<8;i++){
-        this.main.insererTri(this.pioche.prendreCarteDessus());
-      }
+          this.main.insererTri(this.pioche.prendreCarteDessus());
+        }
     }
 
 
@@ -99,7 +101,7 @@ public class Jeu {
      * @return true si la carte a été jouée, et false si la carte n'a pas été jouée.
      */
     public boolean jouerCarte(int indice, int numPil){
-        if(numPil<1 || numPil>4) return false;
+        if(numPil<0 || numPil>3) return false;
         boolean b = false;
         switch (numPil) {
 
@@ -163,7 +165,7 @@ public class Jeu {
      * @return un affichage de l'état du jeu
      */
     public String toString(){
-        return "################################################"+
+        return "################################################\n"+
                 "- PILE 0 : "+this.pile0+"\n"+
                 "- PILE 1 : "+this.pile1+"\n"+
                 "- PILE 2 : "+this.pile2+"\n"+
@@ -172,7 +174,7 @@ public class Jeu {
                 "Reste "+this.pioche.getNbCartes()+" cartes dans la pioche\n"+
                 "################################################\n"+
                 "Main du joueur: \n"+this.main+
-                "################################################\n\n";
+                "\n################################################\n\n";
     }
 
 
@@ -180,7 +182,22 @@ public class Jeu {
      * Méthode qui gère toute la logique du jeu
      */
     public void lancerJeu(){
-    ;
+      Scanner sc = new Scanner(System.in);
+      int tour = 1;
+      System.out.println("\nNouveau jeu\n");
+      System.out.println(this);
+      while (this.etreFini() == 0){
+        System.out.println("Quelle carte poser ?");
+        int indiceCarte = sc.nextInt();
+        System.out.println("Quelle pile ?");
+        int numPile = sc.nextInt();
+        if (!this.jouerCarte(indiceCarte, numPile)) System.out.println("Erreur, l'action n'est pas possible");
+        else tour ++;
+        if (tour%2 != 0) this.completerMain();
+        System.out.println(this);
+      }
+      if (this.etreFini() == 1) System.out.println("Gagné");
+      else System.out.println("Perdu");
     }
 
 }

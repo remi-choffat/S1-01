@@ -72,8 +72,9 @@ public class PaquetCartes{
    * @return la carte a la derniere place du paquet, null si le paquet est vide
    */
   public Carte getDerniereCarte(){
-    if (this.cartes.length != 0){
-      return this.cartes[this.cartes.length-1];
+    int n = this.getNbCartes();
+    if (n != 0){
+      return this.cartes[n-1];
     }
     else {
       return null;
@@ -214,10 +215,9 @@ public class PaquetCartes{
    */
   public void melangerPaquet(){
     PaquetCartes tmp= new PaquetCartes();
-    while (this.cartes == tmp.cartes){ //verifie que le paquet melange n'est pas le meme
-    for(int i=0;i<this.cartes.length;i++){
-      tmp.ajouterCarteDebut(this.piocherHasard()); //On ajoute au paquet temporaire une carte piochee au hasard
-    }
+    int n = this.cartes.length;
+    for(int i=0;i<n;i++){
+      tmp.ajouterCarte(this.piocherHasard(),0); //On ajoute au paquet temporaire une carte piochee au hasard
     }
     this.cartes=tmp.cartes;
   }
@@ -234,7 +234,7 @@ public class PaquetCartes{
     else{
       int i=0;
       //On avance tant que la valeur de la carte a inserer est inferieure a la valeur de la carte i du paquet
-      while(this.cartes[i].getValeur()<c.getValeur()){
+      while(i<this.cartes.length-1 && this.cartes[i].getValeur()<c.getValeur()){
         i++;
       }
       this.ajouterCarte(c, i-1);
