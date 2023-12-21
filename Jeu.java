@@ -131,7 +131,7 @@ public class Jeu {
         // Test s'il reste des cartes dans la main et dans la pioche. Si non : le joueur a gagné
         if(this.main.getNbCartes()==0 && this.pioche.getNbCartes()==0)
             test=1;
-        boolean jeuPossible=false;  
+        boolean jeuPossible=false;
         int i = 0;
         // On teste s'il est possible de jouer une des cartes sur une des piles
         while (!jeuPossible && i<this.main.getNbCartes()){
