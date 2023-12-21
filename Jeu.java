@@ -51,14 +51,20 @@ public class Jeu {
     }
 
 
-    public boolean jouerCartes(int indice, int numPil){
+    /**
+     * Méthode qui permet de savoir si la carte à l'indice indice a était jouée sur la pile numPil
+     * @param indice indice de la carte a joué
+     * @param numPil numero de la pile sur laquelle la carte va etre jouée
+     * @return true si la carte a était joué et false si la carte n'a pas était joué.
+     */
+    public boolean jouerCarte(int indice, int numPil){
         if(numPil<1 || numPil>4) return false;
         boolean b = false;
         switch (numPil) {
 
             case 0:
-            b = this.pile0.poserCarte(this.main.getCarte(indice));
-            if(b) this.main.retirerCarte(indice);
+            b = this.pile0.poserCarte(this.main.getCarte(indice)); //b est egale a true la carte peut etre posée et false si la carte ne peut pas etre posée
+            if(b) this.main.retirerCarte(indice); //si b=true, in retire la carte de la main du joueur
             break;
 
             case 1:
@@ -79,6 +85,15 @@ public class Jeu {
         return b;
     }
 
+    public int etreFini(){
+        int test=0;
+        if(this.main.getNbCartes()==0 && this.pioche.getNbCartes()==0)
+            test=1;
+        for(int i=0;i<this.main.getNbCartes();i++){
+            
+        }
+
+    }
 
     public String toString(){
         return "################################################"+
