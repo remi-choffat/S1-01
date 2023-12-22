@@ -136,7 +136,7 @@ public class PaquetCartes{
    */
   public void ajouterCarte(Carte c, int place){
     int n = this.getNbCartes();
-    if (place<0) this.ajouterCarteDebut(c);
+    if (place<0) this.ajouterCarte(c,0);
     else if (place>=n) this.ajouterCarteFin(c);
     else {
       //cree un nouveau tableau de taille superieure
@@ -228,17 +228,19 @@ public class PaquetCartes{
    * @param c la carte a ajouter
    */
   public void insererTri(Carte c){
-    if(this.getNbCartes()==0){ //on verifie si le tableau est vide
-      this.ajouterCarteDebut(c);
-      }
-    else{
-      int i=0;
-      //On avance tant que la valeur de la carte a inserer est inferieure a la valeur de la carte i du paquet
-      while(i<this.cartes.length-1 && this.cartes[i].getValeur()<c.getValeur()){
-        i++;
-      }
-      this.ajouterCarte(c, i);
-      }
+    if (c != null){
+      if(this.getNbCartes()==0){ //on verifie si le tableau est vide
+        this.ajouterCarte(c, 0);
+        }
+      else{
+        int i=0;
+        //On avance tant que la valeur de la carte a inserer est inferieure a la valeur de la carte i du paquet
+        while(i<this.cartes.length && this.cartes[i].getValeur()<c.getValeur()){
+          i++;
+        }
+        this.ajouterCarte(c, i-1);
+        }
+    }
     }
 
 

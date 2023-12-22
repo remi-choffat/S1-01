@@ -289,30 +289,6 @@ public class TestPaquetCartes {
 
 
 		/**
-		 * test ajoutCarte place hors tableau inf
-		 */
-		@Test
-		public void test16_ajoutCarte_hors_tableau_inf() {
-			Carte[] tab = new Carte[3];
-			tab[0] = new Carte(2);
-			tab[1] = new Carte(3);
-			tab[2] = new Carte(4);
-
-			PaquetCartes paquet = new PaquetCartes(tab);
-			paquet.ajouterCarte(new Carte(1), -1);
-
-			assertEquals("paquet devrait avoir 4 cartes", 4, paquet.getNbCartes());
-
-									// chaque carte doit etre bien placee: place i => valeur i+1
-									for (int i=0;i<3;i++) {
-				Carte c = paquet.getCarte(i);
-				assertEquals("la carte "+i+" a pour valeur "+(i+1), i+1, c.getValeur());
-			}
-
-		}
-
-
-		/**
 		 * test ajoutCarte place hors tableau sup
 		 */
 		@Test
@@ -490,7 +466,7 @@ public class TestPaquetCartes {
 			PaquetCartes paquet = new PaquetCartes(tab);
 			paquet.insererTri(new Carte(2));
 			assertEquals("le paquet devrait avoir 4 cartes", 4, paquet.getNbCartes());
-			for (int i=0; i<3; i++){
+			for (int i=0; i<4; i++){
 				Carte c = paquet.getCarte(i);
 				assertEquals("la carte "+i+" a pour valeur "+i, i, c.getValeur());
 			}

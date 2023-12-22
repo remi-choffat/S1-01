@@ -10,7 +10,7 @@ public class TestJeu {
     /**
      * test des methodes
      */
-    public void test_0_verifieMethodes(){
+    public void test0_verifieMethodes(){
         // question 6.2
         Jeu jeu = new Jeu(50);
 
@@ -54,6 +54,10 @@ public class TestJeu {
       assertEquals("la pioche doit contenir 5 cartes", 5, jeu.getPioche().getNbCartes());
     }
 
+
+    /**
+     * test du constructeur paquet
+     */
     @Test
     public void test2_constructeur_paquet() {
       PaquetCartes p= new PaquetCartes();
@@ -63,6 +67,10 @@ public class TestJeu {
       assertEquals("la pioche doit contenir 5 cartes", 5, jeu.getPioche().getNbCartes());
     }
 
+
+    /**
+     * test jouerCarte possible
+     */
     @Test
     public void test3_jouerCarte_possible() {
       int[] tab={1,2,3,4,5,6,7,8,9,10};
@@ -72,6 +80,7 @@ public class TestJeu {
       boolean b=jeu.jouerCarte(2, 2);
       assertEquals("b est censé etre true", true, b);
     }
+
 
     // @Test
     // public void test4_jouerCarte_impossible() {
@@ -83,6 +92,10 @@ public class TestJeu {
     //   assertEquals("b est censé etre false", false, b);
     // }
 
+
+    /**
+     * test toString
+     */
     @Test
     public void test_toString() {
       int[] tab={1,2,3,4,5,6,7,8,9,10};
@@ -90,15 +103,15 @@ public class TestJeu {
       Jeu jeu = new Jeu(p);
 
       String s="################################################\n"+
-                "- PILE 0 : 0 c-c1-(1)\n"+
-                "- PILE 1 : 1 c-c1-(1)\n"+
-                "- PILE 2 : 2 d-c10-(1)\n"+
-                "- PILE 3 : 3 d-c10-(1)\n"+
+                "- PILE 0 : c-c1-(1)\n"+
+                "- PILE 1 : c-c1-(1)\n"+
+                "- PILE 2 : d-c10-(1)\n"+
+                "- PILE 3 : d-c10-(1)\n"+
                 "################################################\n"+
                 "Reste 0 cartes dans la pioche\n"+
                 "################################################\n"+
-                "Main du joueur: \n 0-c2 1-c3 2-c4 3-c5 4-c6 5-c7 6-c8 7-c9"+
+                "Main du joueur: \n0-c2 1-c3 2-c4 3-c5 4-c6 5-c7 6-c8 7-c9 "+
                 "\n################################################\n\n";
-      assertEquals("b est censé etre false", jeu.toString(), s);
-    }    
+      assertEquals("affichage incorrect", s, jeu.toString());
+    }
 }
