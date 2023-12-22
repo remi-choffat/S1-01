@@ -184,19 +184,29 @@ public class Jeu {
      */
     public void lancerJeu(){
       Scanner sc = new Scanner(System.in);
+      // On initialise le numéro du tour à 1
       int tour = 1;
       System.out.println("\nNouveau jeu\n");
+      // On affiche l'état initial du jeu
       System.out.println(this);
+      // Tant que le joueur peut jouer au moins une carte
       while (this.etreFini() == 0){
+        // On demande la carte que le joueur veut jouer
         System.out.println("Quelle carte poser ?");
         int indiceCarte = sc.nextInt();
+        // On demande la pile sur laquelle il veut la jouer
         System.out.println("Quelle pile ?");
         int numPile = sc.nextInt();
+        // On joue la carte. Si ce n'est pas possible, on prévient le joueur
         if (!this.jouerCarte(indiceCarte, numPile)) System.out.println("Erreur, l'action n'est pas possible");
+        // Si on a pu jouer la carte, on incrémente le numéro du tour
         else tour ++;
+        // Tous les 2 tours, on complète la main du joueur
         if (tour%2 != 0) this.completerMain();
+        // On affiche l'état actuel du jeu
         System.out.println(this);
       }
+      // Lorsqu'il n'y a plus de jeu possible, on indique au joueur s'il a gagné ou perdu
       if (this.etreFini() == 1) System.out.println("Gagné !\n");
       else System.out.println("Vous avez perdu ; il n'y a plus aucun mouvement possible...\n");
     }

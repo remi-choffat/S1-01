@@ -60,8 +60,8 @@ public class TestJeu {
      */
     @Test
     public void test2_constructeur_paquet() {
-      PaquetCartes p= new PaquetCartes();
-      p.remplir(15);
+      int[] tab={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
+      PaquetCartes p= new PaquetCartes(tab);
       Jeu jeu = new Jeu(p);
       assertEquals("le joueur doit avoir 8 cartes", 8, jeu.getMain().getNbCartes());
       assertEquals("la pioche doit contenir 5 cartes", 5, jeu.getPioche().getNbCartes());
@@ -76,28 +76,42 @@ public class TestJeu {
       int[] tab={1,2,3,4,5,6,7,8,9,10};
       PaquetCartes p= new PaquetCartes(tab);
       Jeu jeu = new Jeu(p);
-
       boolean b=jeu.jouerCarte(2, 2);
       assertEquals("b est censé etre true", true, b);
     }
 
 
-    // @Test
-    // public void test4_jouerCarte_impossible() {
-    //   int[] tab={1,2,3,4,5,6,7,8,9,10};
-    //   PaquetCartes p= new PaquetCartes(tab);
-    //   Jeu jeu = new Jeu(p);
+    /**
+     * test jouerCarte impossible pile
+     */
+    @Test
+    public void test4_jouerCarte_impossible_pile() {
+      int[] tab={1,2,3,4,5,6,7,8,9,10};
+      PaquetCartes p= new PaquetCartes(tab);
+      Jeu jeu = new Jeu(p);
+      boolean b=jeu.jouerCarte(2, 4);
+      assertEquals("b est censé etre false", false, b);
+    }
 
-    //   boolean b=jeu.jouerCarte(2, 4);
-    //   assertEquals("b est censé etre false", false, b);
-    // }
+
+    /**
+     * test jouerCarte impossible indice
+     */
+    @Test
+    public void test5_jouerCarte_impossible_indice() {
+      int[] tab={1,2,3,4,5,6,7,8,9,10};
+      PaquetCartes p= new PaquetCartes(tab);
+      Jeu jeu = new Jeu(p);
+      boolean b=jeu.jouerCarte(10,2);
+      assertEquals("b est censé etre false", false, b);
+    }
 
 
     /**
      * test toString
      */
     @Test
-    public void test_toString() {
+    public void test6_toString() {
       int[] tab={1,2,3,4,5,6,7,8,9,10};
       PaquetCartes p= new PaquetCartes(tab);
       Jeu jeu = new Jeu(p);

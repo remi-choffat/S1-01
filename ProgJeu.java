@@ -6,7 +6,7 @@ class ProgJeu {
   public static void main(String [] args) {
 
     // Crée un jeu avec 100 cartes
-    Jeu jeu = new Jeu(14);
+    Jeu jeu = new Jeu(100);
     jeu.lancerJeu();
 
   }
