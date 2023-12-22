@@ -101,7 +101,14 @@ public class Jeu {
      * @return true si la carte a été jouée, et false si la carte n'a pas été jouée.
      */
     public boolean jouerCarte(int indice, int numPil){
-        if(numPil<0 || numPil>3) return false;
+        if (numPil<0 || numPil>3) {
+          System.out.println("**ERREUR** pile inexistante");
+          return false;
+        };
+        if (indice<0 || indice>this.main.getNbCartes()) {
+          System.out.println("**ERREUR** carte inexistante");
+          return false;
+        };
         boolean b = false;
         switch (numPil) {
 
