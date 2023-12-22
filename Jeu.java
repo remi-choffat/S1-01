@@ -20,6 +20,11 @@ public class Jeu {
      */
     private PileCartes[] piles;
 
+    /**
+     * Le nombre de cartes à jouer
+     */
+    private int tailleJeu;
+
 
     /**
      * Constructeur de Jeu
@@ -37,6 +42,7 @@ public class Jeu {
       this.pioche.melangerPaquet();
       this.main=new PaquetCartes();
       this.distribuerJoueur();
+      this.tailleJeu = max-2;
     }
 
 
@@ -57,6 +63,7 @@ public class Jeu {
         this.pioche.retirerCarte(n-2);
         this.main=new PaquetCartes();
         this.distribuerJoueur();
+        this.tailleJeu = n-2;
     }
 
 
@@ -181,8 +188,10 @@ public class Jeu {
 
     /**
      * Méthode qui gère toute la logique du jeu
+     * @return le nombre de points obtenus par le joueur lors de la partie
      */
-    public void lancerJeu(){
+    public int lancerJeu(){
+      int cartesRestantes = this.tailleJeu;
       Scanner sc = new Scanner(System.in);
       // On initialise le numéro du tour à 1
       int tour = 1;
@@ -200,7 +209,10 @@ public class Jeu {
         // On joue la carte. Si ce n'est pas possible, on prévient le joueur
         if (!this.jouerCarte(indiceCarte, numPile)) System.out.println("Erreur, l'action n'est pas possible");
         // Si on a pu jouer la carte, on incrémente le numéro du tour
-        else tour ++;
+        else {
+          tour ++;
+          cartesRestantes--;
+        }
         // Tous les 2 tours, on complète la main du joueur
         if (tour%2 != 0) this.completerMain();
         // On affiche l'état actuel du jeu
@@ -208,7 +220,12 @@ public class Jeu {
       }
       // Lorsqu'il n'y a plus de jeu possible, on indique au joueur s'il a gagné ou perdu
       if (this.etreFini() == 1) System.out.println("Gagné !\n");
-      else System.out.println("Vous avez perdu ; il n'y a plus aucun mouvement possible...\n");
+      else {
+        System.out.println("Vous avez perdu ; il n'y a plus aucun mouvement possible...\n");
+        System.out.println("Vous avez obtenu "+cartesRestantes+" points");
+      }
+      // On renvoie le nombre de points (cartes restantes) obtenu par le joueur
+      return cartesRestantes;
     }
 
 }
