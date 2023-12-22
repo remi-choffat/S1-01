@@ -18,48 +18,63 @@ public class Jeu {
     /**
      * Les piles de cartes
      */
-    private PileCartes pile0;
-    private PileCartes pile1;
-    private PileCartes pile2;
-    private PileCartes pile3;
+    private PileCartes[] piles;
 
 
     /**
-     * Constructeur de jeu
+     * Constructeur de Jeu
      * @param max la taille du jeu
      */
     public Jeu(int max){
-        this.pile0=new PileCartes(true, max);
-        this.pile1=new PileCartes(true, max);
-        this.pile2=new PileCartes(false, max);
-        this.pile3=new PileCartes(false, max);
-        this.pioche=new PaquetCartes();
-        this.pioche.remplir(max);
-        this.pioche.melangerPaquet();
-        this.main=new PaquetCartes();
-        for(int i=0;i<8;i++){
-          this.main.insererTri(this.pioche.prendreCarteDessus());
-        }
+      PileCartes p0 = new PileCartes(true, max);
+      PileCartes p1 = new PileCartes(true, max);
+      PileCartes p2 = new PileCartes(false, max);
+      PileCartes p3 = new PileCartes(false, max);
+      PileCartes[] pi = {p0, p1, p2, p3};
+      this.piles=pi;
+      this.pioche=new PaquetCartes();
+      this.pioche.remplir(max);
+      this.pioche.melangerPaquet();
+      this.main=new PaquetCartes();
+      this.distribuerJoueur();
     }
 
 
     /**
-     * Constructeur de jeu avec paquet
+     * Constructeur de Jeu avec paquet
      * @param p le paquet avec lequel initialiser le jeu
      */
     public Jeu(PaquetCartes p){
         int n=p.getNbCartes();
-        this.pile0=new PileCartes(true, n);
-        this.pile1=new PileCartes(true, n);
-        this.pile2=new PileCartes(false, n);
-        this.pile3=new PileCartes(false, n);
+        PileCartes p0 = new PileCartes(true, n);
+        PileCartes p1 = new PileCartes(true, n);
+        PileCartes p2 = new PileCartes(false, n);
+        PileCartes p3 = new PileCartes(false, n);
+        PileCartes[] pi = {p0, p1, p2, p3};
+        this.piles=pi;
+        p.retirerCarte(0);
+        p.retirerCarte(p.getNbCartes()-2);
         this.pioche=p;
         this.main=new PaquetCartes();
+        this.distribuerJoueur();
+    }
+
+
+    /**
+     * Initialise la main du joueur en fonction du nombre de cartes de la pioche
+     */
+    public void distribuerJoueur(){
+      int n = this.pioche.getNbCartes();
+      if (n >= 8){
         for(int i=0;i<8;i++){
           this.main.insererTri(this.pioche.prendreCarteDessus());
         }
+      }
+      else
+        for(int i=0;i<n;i++){
+          this.main.insererTri(this.pioche.prendreCarteDessus());
+      }
     }
-
 
 
     /**
@@ -82,15 +97,10 @@ public class Jeu {
 
     /**
      * Getter piles
-     * @return le paquet représentant la main du joueur
+     * @return un tableau représentant les 4 piles de jeu
      */
     public PileCartes[] getPiles(){
-      PileCartes[] p = new PileCartes[4];
-      p[0] = this.pile0;
-      p[1] = this.pile1;
-      p[2] = this.pile2;
-      p[3] = this.pile3;
-      return p;
+      return this.piles;
     }
 
 
@@ -101,30 +111,18 @@ public class Jeu {
      * @return true si la carte a été jouée, et false si la carte n'a pas été jouée.
      */
     public boolean jouerCarte(int indice, int numPil){
-        if(numPil<0 || numPil>3) return false;
+        if (numPil<0 || numPil>3) {
+          System.out.println("**ERREUR** pile inexistante");
+          return false;
+        };
+        if (indice<0 || indice>this.main.getNbCartes()) {
+          System.out.println("**ERREUR** carte inexistante");
+          return false;
+        };
         boolean b = false;
-        switch (numPil) {
+          b = this.piles[numPil].poserCarte(this.main.getCarte(indice)); //b est vrai si la carte peut etre posée, b est faux si la carte ne peut pas etre posée
+          if(b) this.main.retirerCarte(indice); //si b est vrai, on retire la carte de la main du joueur
 
-            case 0:
-            b = this.pile0.poserCarte(this.main.getCarte(indice)); //b est vrai si la carte peut etre posée, b est faux si la carte ne peut pas etre posée
-            if(b) this.main.retirerCarte(indice); //si b est vrai, on retire la carte de la main du joueur
-            break;
-
-            case 1:
-            b = this.pile1.poserCarte(this.main.getCarte(indice));
-            if(b) this.main.retirerCarte(indice);
-            break;
-
-            case 2:
-            b = this.pile2.poserCarte(this.main.getCarte(indice));
-            if(b) this.main.retirerCarte(indice);
-            break;
-
-            case 3:
-            b = this.pile3.poserCarte(this.main.getCarte(indice));
-            if(b) this.main.retirerCarte(indice);
-            break;
-        }
         return b;
     }
 
@@ -143,7 +141,7 @@ public class Jeu {
           int i = 0;
           // On teste s'il est possible de jouer une des cartes sur une des piles
           while (!jeuPossible && i<this.main.getNbCartes()){
-              jeuPossible=(this.pile0.etrePosable(this.main.getCarte(i)) || this.pile1.etrePosable(this.main.getCarte(i)) || this.pile2.etrePosable(this.main.getCarte(i)) || this.pile3.etrePosable(this.main.getCarte(i)));
+              jeuPossible=(this.piles[0].etrePosable(this.main.getCarte(i)) || this.piles[1].etrePosable(this.main.getCarte(i)) || this.piles[2].etrePosable(this.main.getCarte(i)) || this.piles[3].etrePosable(this.main.getCarte(i)));
               i++;
           }
           // S'il n'est possible de jouer aucune carte, le joueur a perdu
@@ -169,10 +167,10 @@ public class Jeu {
      */
     public String toString(){
         return "################################################\n"+
-                "- PILE 0 : "+this.pile0+"\n"+
-                "- PILE 1 : "+this.pile1+"\n"+
-                "- PILE 2 : "+this.pile2+"\n"+
-                "- PILE 3 : "+this.pile3+"\n"+
+                "- PILE 0 : "+this.piles[0]+"\n"+
+                "- PILE 1 : "+this.piles[1]+"\n"+
+                "- PILE 2 : "+this.piles[2]+"\n"+
+                "- PILE 3 : "+this.piles[3]+"\n"+
                 "################################################\n"+
                 "Reste "+this.pioche.getNbCartes()+" cartes dans la pioche\n"+
                 "################################################\n"+
