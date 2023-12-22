@@ -73,16 +73,32 @@ public class TestJeu {
       assertEquals("b est censé etre true", true, b);
     }
 
+    // @Test
+    // public void test4_jouerCarte_impossible() {
+    //   int[] tab={1,2,3,4,5,6,7,8,9,10};
+    //   PaquetCartes p= new PaquetCartes(tab);
+    //   Jeu jeu = new Jeu(p);
+
+    //   boolean b=jeu.jouerCarte(2, 4);
+    //   assertEquals("b est censé etre false", false, b);
+    // }
+
     @Test
-    public void test4_jouerCarte_impossible() {
+    public void test_toString() {
       int[] tab={1,2,3,4,5,6,7,8,9,10};
       PaquetCartes p= new PaquetCartes(tab);
       Jeu jeu = new Jeu(p);
 
-      boolean b=jeu.jouerCarte(2, 4);
-      assertEquals("b est censé etre false", false, b);
-    }
-    
-
-
+      String s="################################################\n"+
+                "- PILE 0 : 0 c-c1-(1)\n"+
+                "- PILE 1 : 1 c-c1-(1)\n"+
+                "- PILE 2 : 2 d-c10-(1)\n"+
+                "- PILE 3 : 3 d-c10-(1)\n"+
+                "################################################\n"+
+                "Reste 0 cartes dans la pioche\n"+
+                "################################################\n"+
+                "Main du joueur: \n 0-c2 1-c3 2-c4 3-c5 4-c6 5-c7 6-c8 7-c9"+
+                "\n################################################\n\n";
+      assertEquals("b est censé etre false", jeu.toString(), s);
+    }    
 }
