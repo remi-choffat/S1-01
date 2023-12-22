@@ -25,7 +25,7 @@ public class Jeu {
 
 
     /**
-     * Constructeur de jeu
+     * Constructeur de Jeu
      * @param max la taille du jeu
      */
     public Jeu(int max){
@@ -37,14 +37,12 @@ public class Jeu {
         this.pioche.remplir(max);
         this.pioche.melangerPaquet();
         this.main=new PaquetCartes();
-        for(int i=0;i<8;i++){
-          this.main.insererTri(this.pioche.prendreCarteDessus());
-        }
+        this.distribuerJoueur();
     }
 
 
     /**
-     * Constructeur de jeu avec paquet
+     * Constructeur de Jeu avec paquet
      * @param p le paquet avec lequel initialiser le jeu
      */
     public Jeu(PaquetCartes p){
@@ -55,11 +53,25 @@ public class Jeu {
         this.pile3=new PileCartes(false, n);
         this.pioche=p;
         this.main=new PaquetCartes();
+        this.distribuerJoueur();
+    }
+
+
+    /**
+     * Initialise la main du joueur en fonction du nombre de cartes de la pioche
+     */
+    public void distribuerJoueur(){
+      int n = this.pioche.getNbCartes();
+      if (n >= 8){
         for(int i=0;i<8;i++){
           this.main.insererTri(this.pioche.prendreCarteDessus());
         }
+      }
+      else
+        for(int i=0;i<n;i++){
+          this.main.insererTri(this.pioche.prendreCarteDessus());
+      }
     }
-
 
 
     /**
