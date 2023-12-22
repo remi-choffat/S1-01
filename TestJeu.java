@@ -51,8 +51,38 @@ public class TestJeu {
     public void test1_constructeur_entier() {
       Jeu jeu = new Jeu(15);
       assertEquals("le joueur doit avoir 8 cartes", 8, jeu.getMain().getNbCartes());
-      assertEquals("la pioche doit contenir 5 carets", 15-2-8, jeu.getPioche().getNbCartes());
+      assertEquals("la pioche doit contenir 5 cartes", 5, jeu.getPioche().getNbCartes());
     }
+
+    @Test
+    public void test2_constructeur_paquet() {
+      PaquetCartes p= new PaquetCartes();
+      p.remplir(15);
+      Jeu jeu = new Jeu(p);
+      assertEquals("le joueur doit avoir 8 cartes", 8, jeu.getMain().getNbCartes());
+      assertEquals("la pioche doit contenir 5 cartes", 5, jeu.getPioche().getNbCartes());
+    }
+
+    @Test
+    public void test3_jouerCarte_possible() {
+      int[] tab={1,2,3,4,5,6,7,8,9,10};
+      PaquetCartes p= new PaquetCartes(tab);
+      Jeu jeu = new Jeu(p);
+
+      boolean b=jeu.jouerCarte(2, 2);
+      assertEquals("b est censé etre true", true, b);
+    }
+
+    @Test
+    public void test4_jouerCarte_impossible() {
+      int[] tab={1,2,3,4,5,6,7,8,9,10};
+      PaquetCartes p= new PaquetCartes(tab);
+      Jeu jeu = new Jeu(p);
+
+      boolean b=jeu.jouerCarte(2, 4);
+      assertEquals("b est censé etre false", false, b);
+    }
+    
 
 
 }
