@@ -52,6 +52,8 @@ public class Jeu {
         PileCartes p3 = new PileCartes(false, n);
         PileCartes[] pi = {p0, p1, p2, p3};
         this.piles=pi;
+        p.retirerCarte(0);
+        p.retirerCarte(p.getNbCartes()-2);
         this.pioche=p;
         this.main=new PaquetCartes();
         this.distribuerJoueur();
